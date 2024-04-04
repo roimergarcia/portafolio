@@ -1,0 +1,31 @@
+---
+import { basics	} from '@cv';
+
+const {name, label, location} = basics; 
+const {city, region} = location;
+
+---
+<section>
+    <h1>{name}
+        <small>{label}</small>
+    </h1>
+	<img src="/roimer-foto.jpg"/>
+</section>
+
+<style>
+	section{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		h1 { font-size: 3rem; flex: 1 1 max-content; }
+		small { font-size: 1rem; display:block }
+	}
+	section img{
+		flex: 0 0 120px;
+		width: 120px;
+		height: 120px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+</style>
