@@ -1,31 +1,81 @@
 ---
 import { basics	} from '@cv';
+import Linkedin from './icons/Linkedin.astro';
+import Pildora from './Pildora.astro';
+import { validateConfig } from 'node_modules/astro/dist/core/config/config';
+import Twitter from './icons/Twitter.astro';
 
-const {name, label, location} = basics; 
+
+const {name, label, image, summary, location, profiles} = basics; 
 const {city, region} = location;
+
+const profileLink = {};
+profiles.forEach((value)=>{
+	profileLink[value.network.toLowerCase()] = value;
+})
 
 ---
 <section>
-    <h1>{name}
-        <small>{label}</small>
-    </h1>
-	<img src="/roimer-foto.jpg"/>
+	<div class="container">
+		<h1>{name}
+			<small>{label}</small>
+		</h1>
+		<img src={image}/>
+	</div>
+	<nav>
+		
+		{profileLink['linkedin']  && 
+		<Pildora href={profileLink['linkedin'].url}>
+			<Linkedin class="icono" />
+			{profileLink['linkedin'].network}
+		</Pildora>}	
+		{profileLink['twitter']  && 
+		<Pildora href={profileLink['twitter'].url}>
+			<Twitter class="icono"/>
+			{profileLink['twitter'].network}
+		</Pildora>}	
+
+	</nav>
 </section>
 
 <style>
-	section{
+	.container {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-wrap: wrap;
+		text-align: left;
 		h1 { font-size: 3rem; flex: 1 1 max-content; }
 		small { font-size: 1rem; display:block }
 	}
-	section img{
-		flex: 0 0 120px;
-		width: 120px;
-		height: 120px;
+	.container  img{
+		flex: 0 0 160px;
+		width: 160px;
+		height: 160px;
 		object-fit: cover;
 		border-radius: 50%;
+	}
+
+	nav{
+		display: flex;
+		gap: 1.5rem;
+	}
+	nav > .pildora {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		color: inherit;
+		text-decoration: none;
+		border: 1px solid black/40;
+		:hover{
+			scale: 1.1;
+			background-color: white/10;
+			transition: all;
+			text-decoration: underline;
+		}
+		.icono {
+			width: 1em;
+			height: 1em;
+		}
 	}
 </style>

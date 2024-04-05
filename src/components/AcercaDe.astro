@@ -1,5 +1,13 @@
+---
+import { basics	} from '@cv';
+
+const {name, label, image, summary, location} = basics; 
+const {city, region} = location;
+
+---
 <section>
     <h1>Acerca de</h1>
+    <div>{summary}</div>
 </section>
 
 <style>
