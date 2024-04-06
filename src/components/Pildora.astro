@@ -6,3 +6,25 @@
 >
     <slot/>
 </a>
+
+<style>
+    .pildora {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		color: inherit;
+		text-decoration: none;
+		text-underline-offset: 2px;
+		border: 1px solid black/40;
+		&:hover{
+			scale: 1.1;
+			background-color: white/10;
+			transition: all;
+			text-decoration: underline;
+		}
+		.icono {
+			width: 1em;
+			height: 1em;
+		}
+	}
+</style>
